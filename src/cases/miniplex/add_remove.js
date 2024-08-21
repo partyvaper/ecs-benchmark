@@ -1,19 +1,19 @@
 import { World } from "miniplex";
 
 export default async (count) => {
-  const ecs = new World();
+    const world = new World();
 
-  for (let i = 0; i < count; i++) {
-    ecs.createEntity({ A: true });
-  }
-
-  return () => {
-    for (const entity of ecs.entities) {
-      ecs.addComponent(entity, { B: true });
+    for (let i = 0; i < count; i++) {
+        world.add({ A: true });
     }
 
-    for (const entity of ecs.entities) {
-      ecs.removeComponent(entity, "B");
-    }
-  };
+    return () => {
+        for (const entity of world.entities) {
+            world.addComponent(entity, { B: true });
+        }
+
+        for (const entity of world.entities) {
+            world.removeComponent(entity, "B");
+        }
+    };
 };

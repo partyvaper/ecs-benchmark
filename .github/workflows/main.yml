@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: npm ci
-      - run: npm run check-format
+      - run: npm run lint
   bench-obj:
     runs-on: ubuntu-latest
     steps:
