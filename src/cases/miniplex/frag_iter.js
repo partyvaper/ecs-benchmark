@@ -1,6 +1,6 @@
 import { World } from "miniplex";
 
-export default async (count) => {
+export default (count) => {
     const world = new World();
 
     Array.from("ABCDEFGHIJKLMNOPQRSTUVWXYZ").forEach((component) => {

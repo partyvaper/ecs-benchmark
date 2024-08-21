@@ -1,6 +1,6 @@
 import { defineComponent, Types, createWorld, addEntity, addComponent, pipe, defineQuery } from "bitecs";
 
-export default async (count) => {
+export default (count) => {
     const world = createWorld();
 
     const A = defineComponent({ value: Types.i32 });
@@ -17,18 +17,15 @@ export default async (count) => {
         C.value[eid] = 0;
     }
 
-    const withBZeroQuery = defineQuery([A, B, C]);
-    const withBOneQuery = defineQuery([A, B, C]);
+    const qB = defineQuery([A, B, C]);
+    const withBZero = qB(world).filter((eid) => B.value[eid] === 0);
+    const withBOne = qB(world).filter((eid) => B.value[eid] === 1);
 
     const system = (world) => {
-        const withBZero = withBZeroQuery(world).filter((eid) => B.value[eid] === 0);
-        const withBOne = withBOneQuery(world).filter((eid) => B.value[eid] === 1);
         for (let i = 0, len = withBZero.length; i < len; i++) {
             const eidZero = withBZero[i];
             for (let j = 0, len2 = withBOne.length; j < len2; j++) {
                 const eidOne = withBOne[j];
-        // for (const eidZero of withBZero) {
-        //     for (const eidOne of withBOne) {
                 C.value[eidZero] = B.value[eidOne];
                 C.value[eidOne] = B.value[eidZero];
             }
@@ -36,9 +33,7 @@ export default async (count) => {
         return world;
     };
 
-    const pipeline = pipe(system);
-
     return () => {
-        pipeline(world);
+        system(world);
     };
 };

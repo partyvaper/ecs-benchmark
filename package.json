@@ -25,7 +25,8 @@
     "wolf-ecs": "2.1.3"
   },
   "devDependencies": {
-    "@types/node": "^22.4.1",
+    "@types/node": "^22.4.2",
     "prettier": "^3.3.3"
-  }
+  },
+  "packageManager": "yarn@3.8.1+sha256.860bab3ca20acc0476b3229f4841674e62e15453bd8f5dc8d0fea399edd235b6"
 }

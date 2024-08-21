@@ -1,6 +1,6 @@
 import { World } from "miniplex";
 
-export default async (count) => {
+export default (count) => {
     const world = new World();
 
     for (let i = 0; i < count; i++) {
