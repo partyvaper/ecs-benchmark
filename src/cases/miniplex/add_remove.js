@@ -8,12 +8,13 @@ export default (count) => {
     }
 
     return () => {
-        for (const entity of world.entities) {
-            world.addComponent(entity, { B: true });
+        const entities = world.entities;
+        for (let i = 0, len = entities.length; i < len; i++) {
+            world.addComponent(entities[i], { B: true });
         }
 
-        for (const entity of world.entities) {
-            world.removeComponent(entity, "B");
+        for (let i = 0, len = entities.length; i < len; i++) {
+            world.removeComponent(entities[i], "B");
         }
     };
 };

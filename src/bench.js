@@ -25,13 +25,15 @@ const LIBRARIES = [
     // { kind: OBJ, name: "uecs" },
 ];
 
+const ITER_SCALE = 1;
+
 const BENCHMARKS = {
-    packed_5: 1_000,
-    simple_iter: 1_000,
-    selective_iter: 1_000,
-    frag_iter: 100,
-    entity_cycle: 1_000,
-    add_remove: 1_000,
+    packed_5: 1_000 * ITER_SCALE,
+    simple_iter: 1_000 * ITER_SCALE,
+    selective_iter: 1_000 * ITER_SCALE,
+    frag_iter: 100 * ITER_SCALE,
+    entity_cycle: 1_000 * ITER_SCALE,
+    add_remove: 1_000 * ITER_SCALE,
 };
 
 let libraries;
@@ -95,9 +97,7 @@ for (let lib of libraries) {
 // console.log(RESULTS);
 
 const minMax = Object.keys(BENCHMARKS).map((bench, i) => {
-    const values = RESULTS.filter((r) => r !== "TODO")
-        .map((r) => r[i].hz)
-        .sort((a, b) => a - b);
+    const values = RESULTS.filter((r) => r !== "TODO").map((r) => r[i].hz).sort((a, b) => a - b);
     const min = values[0];
     const secondMax = values[values.length - 2];
     const max = values[values.length - 1];

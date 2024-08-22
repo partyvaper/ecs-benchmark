@@ -7,17 +7,21 @@ export default (count) => {
         world.add({ A: 1 });
     }
 
-    const withA = world.with("A");
-    const withB = world.with("B");
+    const aEntities = world.with("A");
+    const bEntities = world.with("B");
 
     return () => {
-        for (const entity of withA.entities) {
+        for (const entity of aEntities) {
             world.add({ B: 1 });
         }
 
-        for (let i = withB.entities.length; i > 0; i--) {
-            const entity = withB.entities[i - 1];
+        for (const entity of bEntities) {
             world.remove(entity);
         }
+
+        // for (let i = bEntities.entities.length; i > 0; i--) {
+        //     const entity = bEntities.entities[i - 1];
+        //     world.remove(entity);
+        // }
     };
 };

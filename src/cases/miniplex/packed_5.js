@@ -7,31 +7,36 @@ export default (count) => {
         world.add({ A: 1, B: 1, C: 1, D: 1, E: 1 });
     }
 
-    const withA = world.with("A");
-    const withB = world.with("B");
-    const withC = world.with("C");
-    const withD = world.with("D");
-    const withE = world.with("E");
+    const queryA = world.with("A");
+    const queryB = world.with("B");
+    const queryC = world.with("C");
+    const queryD = world.with("D");
+    const queryE = world.with("E");
 
     return () => {
-        for (const entity of withA.entities) {
-            entity.A *= 2;
+        const queryAentities = queryA.entities;
+        for (let i = 0, len = queryAentities.length; i < len; i++) {
+            queryAentities[i].A *= 2;
         }
 
-        for (const entity of withB.entities) {
-            entity.B *= 2;
+        const queryBentities = queryB.entities;
+        for (let i = 0, len = queryBentities.length; i < len; i++) {
+            queryBentities[i].B *= 2;
         }
 
-        for (const entity of withC.entities) {
-            entity.C *= 2;
+        const queryCentities = queryC.entities;
+        for (let i = 0, len = queryCentities.length; i < len; i++) {
+            queryCentities[i].C *= 2;
         }
 
-        for (const entity of withD.entities) {
-            entity.D *= 2;
+        const queryDentities = queryD.entities;
+        for (let i = 0, len = queryDentities.length; i < len; i++) {
+            queryDentities[i].D *= 2;
         }
 
-        for (const entity of withE.entities) {
-            entity.E *= 2;
+        const queryEentities = queryE.entities;
+        for (let i = 0, len = queryEentities.length; i < len; i++) {
+            queryEentities[i].E *= 2;
         }
     };
 };
